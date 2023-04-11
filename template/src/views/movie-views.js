@@ -18,15 +18,15 @@ export const toSingleMovieView = (movie) => `
 </div>
 `;
 
-export const toMovieSimple = (movie) => `
-<div class="movie">
-  <h1>${movie.title}</h1>
-  <h2>${movie.year}</h2>
-  <img src="${movie.poster}"><br>
-  <button class="view-movie-btn" data-movie-id="${movie.id}">View details</button>
-  ${renderFavoriteStatus(movie.id)}
-</div>
-`;
+// export const toMovieSimple = (movie) => `
+// <div class="movie">
+//   <h1>${movie.title}</h1>
+//   <h2>${movie.year}</h2>
+//   <img src="${movie.poster}"><br>
+//   <button class="view-movie-btn" data-movie-id="${movie.id}">View details</button>
+//   ${renderFavoriteStatus(movie.id)}
+// </div>
+// `;
 
 const toMovieDetailed = (movie) => `
 <div class="movie-detailed">
@@ -39,5 +39,26 @@ const toMovieDetailed = (movie) => `
     <p>Staring: ${movie.stars.join(', ')}</p>
     <p>Plot: ${movie.description}</p>
   </div>
+</div>
+`;
+
+
+
+// export const toMoviesFromCategoryView = (category, movies) => `
+// <div id="movies">
+//   <h1>${gif.data.name} movies:</h1>
+//   <div class="content">
+//     ${movies.map(toMovieSimple).join('\n')}
+//   </div>
+// </div>
+// `;
+
+
+export const toMovieSimple = (movie) => `
+<div class="movie">
+  <h1>${movie.title}</h1>
+  <h2>${movie.year}</h2>
+  <img src="${movie.poster}"><br>
+  <button class="view-movie-btn" data-movie-id="${movie.id}">View details</button>
 </div>
 `;

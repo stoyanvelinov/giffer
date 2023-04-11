@@ -1,0 +1,19 @@
+.content {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-auto-flow: dense;
+}
+.gif{
+    width: 100%;
+}
+/* #trending {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .gif {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  } */

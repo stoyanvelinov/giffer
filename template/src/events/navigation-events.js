@@ -81,8 +81,8 @@ const renderFavorites = () => {
   q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(movies);
 };
 
-const renderAbout = () => {
-  console.log(getTrendingGifs());
-  // q(CONTAINER_SELECTOR).innerHTML = toTrendingView();
+const renderAbout = async () => {
+  // console.log(await getTrendingGifs().map(el=>console.log(el))+'promis!');
+  q(CONTAINER_SELECTOR).innerHTML =await toTrendingView();
   // q(CONTAINER_SELECTOR).innerHTML = "<h1>asdfasdfd</h1>";
 };

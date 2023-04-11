@@ -6,14 +6,21 @@ const findCategory = (categoryId) => {
 };
 
 export const getTrendingGifs = async () => {
-  const url = `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_KEY}&limit=25&rating=g`;
+  const url = `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_KEY}&limit=50&rating=g`;
   const gifs = await fetch(url);
   const result = await gifs.json();
-  // console.log(result);
+  // console.log(result.data.map(el=>console.log(el))+'get trending gifs promisa');
   return result.data;
 };
 
-// https://api.giphy.com/v1/gifs/trending?api_key=zZCLyqjkcBZBOuCVgKxXBzGb1pUy5ZoQ&limit=25&rating=g
+export const getSearchedGifs = async (title) => {
+const url = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_KEY}&q=${title}&offset=0&rating=g&lang=en`;
+const gifs = await fetch(url);
+const result = await gifs.json();
+return result.data
+}
+
+
 export const getMoviesGeneralInfo = (categoryId = null) => {
   const moviesFilter = categoryId
     ? (m) => m.genre === findCategory(categoryId).name
@@ -39,7 +46,7 @@ export const getMoviesFullInfo = (categoryId = null) => {
 export const getMovieById = (movieId = 0) =>
   movies.find((m) => m.id === movieId);
 
-export const searchMovies = (title = "") =>
+export const searchGifs = (title = "") =>
   title
     ? movies.filter((m) => m.title.toLowerCase().includes(title.toLowerCase()))
     : movies;
