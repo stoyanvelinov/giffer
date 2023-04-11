@@ -1,18 +1,32 @@
-import { ABOUT, CATEGORIES, CONTAINER_SELECTOR, FAVORITES, HOME } from '../common/constants.js';
-import { loadCategories, loadCategory, loadMovies, loadSingleMovie } from '../requests/request-service.js';
-import { toAboutView } from '../views/about-view.js';
-import { toCategoriesView } from '../views/category-view.js';
-import { toFavoritesView } from '../views/favorites-view.js';
-import { toHomeView } from '../views/home-view.js';
-import { toMoviesFromCategoryView, toSingleMovieView } from '../views/movie-views.js';
-import { q, setActiveNav } from './helpers.js';
-import { getFavorites } from '../data/favorites.js';
+import {
+  ABOUT,
+  CATEGORIES,
+  CONTAINER_SELECTOR,
+  FAVORITES,
+  HOME,
+} from "../common/constants.js";
+import {
+  loadCategories,
+  loadCategory,
+  loadMovies,
+  loadSingleMovie,
+} from "../requests/request-service.js";
+// import { toAboutView } from "../views/trending-view.js";
+import { toCategoriesView } from "../views/category-view.js";
+import { toFavoritesView } from "../views/favorites-view.js";
+import { toHomeView } from "../views/home-view.js";
+import {
+  toMoviesFromCategoryView,
+  toSingleMovieView,
+} from "../views/movie-views.js";
+import { q, setActiveNav } from "./helpers.js";
+import { getFavorites } from "../data/favorites.js";
+import { toTrendingView } from "../views/trending-view.js";
+import { getTrendingGifs } from "../data/movies.js";
 
 // public API
-export const loadPage = (page = '') => {
-
+export const loadPage = (page = "") => {
   switch (page) {
-
     case HOME:
       setActiveNav(HOME);
       return renderHome();
@@ -30,9 +44,9 @@ export const loadPage = (page = '') => {
       return renderAbout();
 
     /* if the app supports error login, use default to log mapping errors */
-    default: return null;
+    default:
+      return null;
   }
-
 };
 
 export const renderMovieDetails = (id = null) => {
@@ -62,11 +76,13 @@ const renderCategories = () => {
 
 const renderFavorites = () => {
   const favorites = getFavorites();
-  const movies = favorites.map(id => loadSingleMovie(id));
+  const movies = favorites.map((id) => loadSingleMovie(id));
 
   q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(movies);
 };
 
 const renderAbout = () => {
-  q(CONTAINER_SELECTOR).innerHTML = toAboutView();
+  console.log(getTrendingGifs());
+  // q(CONTAINER_SELECTOR).innerHTML = toTrendingView();
+  // q(CONTAINER_SELECTOR).innerHTML = "<h1>asdfasdfd</h1>";
 };

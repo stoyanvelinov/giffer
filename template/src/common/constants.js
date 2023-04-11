@@ -1,13 +1,15 @@
-export const HOME = 'home';
+export const GIPHY_KEY = "zZCLyqjkcBZBOuCVgKxXBzGb1pUy5ZoQ";
 
-export const CATEGORIES = 'categories';
+export const HOME = "home";
 
-export const FAVORITES = 'favorites';
+export const CATEGORIES = "categories";
 
-export const ABOUT = 'about';
+export const FAVORITES = "favorites";
 
-export const CONTAINER_SELECTOR = '#container';
+export const ABOUT = "about";
 
-export const FULL_HEART = '❤';
+export const CONTAINER_SELECTOR = "#container";
 
-export const EMPTY_HEART = '♡';
+export const FULL_HEART = "❤";
+
+export const EMPTY_HEART = "♡";
