@@ -5,9 +5,10 @@
   -moz-column-count: 5;
   -moz-column-gap: 10px;
   column-count: 4;
-  column-gap: 10px;
+  column-gap: 15px;
   margin-top: 1em;
 }
+
 #gif-wrapper .gif {
   width: 100% !important;
   height: auto !important;
@@ -15,21 +16,112 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 #gif-wrapper {
   display: inline-block;
   margin-right: auto;
   margin-left: auto;
 }
+
 #gif-container {
-    max-width: 70%;
-    border-color: black;
-    /* border: solid 2px; */
-    /* margin-top: 1em;
+  max-width: 70%;
+  border-color: black;
+  /* border: solid 2px; */
+  /* margin-top: 1em;
     margin-left: auto;
     margin-right: auto; */
-    margin: 1em auto
-  }
+  margin: 1em auto
+}
 
+.gif {
+  transition: all 0.2s ease;
+  box-shadow: 5px 5px 10px #656464;
+}
+
+.gif:hover {
+  transform: scale(1.05);
+  box-shadow: 8px 8px 20px #2a2929;
+}
+
+/*header*/
+header {
+  max-width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: last baseline;
+}
+
+/*nav bar*/
+nav {
+  display: flex;
+  gap: 40px;
+  margin: 20px auto;
+  margin-bottom: 60px;
+}
+
+.nav-link {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/*search bar*/
+#search {
+  flex-basis: 500px;
+  padding: 8px;
+  border-radius: 20px;
+}
+
+/*detailed view*/
+.gif-detailed {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 5px;
+}
+
+.gif-preview {
+  justify-self: center;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+#heart {
+  font-size: 40px;
+}
+
+#heart:hover {
+  transform: scale(1.2) translateY(-3px);
+
+}
+
+.gif-info p {
+  font-size: 30px;
+  text-align: center;
+}
+
+/* #gif-details-btn {
+  display: inline-block;
+  font-size: 15px;
+  border: none;
+  background-color: #2e2e2e;
+  border-radius: 20px;
+  color: #ffff;
+  padding: 0.8em 1.5em;
+  transition: all 0.2s ease;
+}
+
+#gif-details-btn:hover {
+  background-color: aqua;
+  border: 0.1px #797878 solid;
+  color: #2e2e2e;
+  transform: scale(1.1);
+  box-shadow: 5px 5px 20px #656464;
+} */
+/**Media queries**/
 @media (max-width: 1000px) {
   #gif-wrapper {
     -moz-column-count: 3;
@@ -37,24 +129,27 @@
     column-count: 3;
   }
 }
+
 @media (max-width: 800px) {
   #gif-wrapper {
     -moz-column-count: 2;
     -webkit-column-count: 2;
     column-count: 2;
   }
-  #gif-container{
+
+  #gif-container {
     max-width: 90%;
   }
 }
+
 @media (max-width: 400px) {
   #gif-wrapper {
     -moz-column-count: 1;
     -webkit-column-count: 1;
     column-count: 1;
   }
-  #gif-container{
+
+  #gif-container {
     max-width: 95%;
   }
 }
-
