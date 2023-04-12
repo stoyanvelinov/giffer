@@ -1,30 +1,19 @@
 import { HOME } from "./common/constants.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { q } from "./events/helpers.js";
-import {
-  loadPage,
-  renderCategory,
-  renderMovieDetails,
-} from "./events/navigation-events.js";
+import { loadPage, renderGifDetails } from "./events/navigation-events.js";
 import { renderSearchItems } from "./events/search-events.js";
-import { getTrendingGifs } from "./data/movies.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
-  document.addEventListener("click",async (e) => {
+  document.addEventListener("click", async (e) => {
     // nav events
     if (e.target.classList.contains("nav-link")) {
-    await  loadPage(e.target.getAttribute("data-page"));
+      await loadPage(e.target.getAttribute("data-page"));
     }
 
-    // show category events
-    if (e.target.classList.contains("view-category-btn")) {
-      renderCategory(+e.target.getAttribute("data-category-id"));
-    }
-
-    // show movie events
-    if (e.target.classList.contains("view-movie-btn")) {
-      renderMovieDetails(+e.target.getAttribute("data-movie-id"));
+    if (e.target.classList.contains("gif-detail-btn")) {
+      renderGifDetails(e.target.getAttribute("gif-id"));
     }
 
     // toggle favorite event
@@ -37,6 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
   q("input#search").addEventListener("input", (e) => {
     renderSearchItems(e.target.value);
   });
+
+  // window.addEventListener("load", function () {
+  //   q(".gif").style.backgroundColor = "transparent";
+  // });
 
   loadPage(HOME);
 });

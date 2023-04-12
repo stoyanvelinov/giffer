@@ -1,15 +1,18 @@
-import { addFavorite, getFavorites, removeFavorite } from '../data/favorites.js';
-import { q, renderFavoriteStatus } from './helpers.js';
+import {
+  addFavorite,
+  getFavorites,
+  removeFavorite,
+} from "../data/favorites.js";
+import { q, renderFavoriteStatus } from "./helpers.js";
 
-
-export const toggleFavoriteStatus = (movieId) => {
+export const toggleFavoriteStatus = (gifId) => {
   const favorites = getFavorites();
 
-  if (favorites.includes(movieId)) {
-    removeFavorite(movieId);
+  if (favorites.includes(gifId)) {
+    removeFavorite(gifId);
   } else {
-    addFavorite(movieId);
+    addFavorite(gifId);
   }
 
-  q(`span[data-movie-id="${movieId}"]`).innerHTML = renderFavoriteStatus(movieId);
+  q(`span[data-gif-id="${gifId}"]`).innerHTML = renderFavoriteStatus(movieId);
 };

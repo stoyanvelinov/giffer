@@ -1,28 +1,19 @@
 import {
-  ABOUT,
-  CATEGORIES,
+  // CATEGORIES,
   CONTAINER_SELECTOR,
   FAVORITES,
   HOME,
+  TRENDING,
+  UPLOAD,
 } from "../common/constants.js";
-import {
-  loadCategories,
-  loadCategory,
-  loadMovies,
-  loadSingleMovie,
-} from "../requests/request-service.js";
-// import { toAboutView } from "../views/trending-view.js";
-import { toCategoriesView } from "../views/category-view.js";
+import { loadSingleGif } from "../requests/request-service.js";
 import { toFavoritesView } from "../views/favorites-view.js";
 import { toHomeView } from "../views/home-view.js";
-import {
-  toMoviesFromCategoryView,
-  toSingleMovieView,
-} from "../views/movie-views.js";
+import { toGifDetailsView } from "../views/detail-view.js";
 import { q, setActiveNav } from "./helpers.js";
 import { getFavorites } from "../data/favorites.js";
 import { toTrendingView } from "../views/trending-view.js";
-import { getTrendingGifs } from "../data/movies.js";
+import { toUploadView } from "../views/upload-view.js";
 
 // public API
 export const loadPage = (page = "") => {
@@ -31,17 +22,17 @@ export const loadPage = (page = "") => {
       setActiveNav(HOME);
       return renderHome();
 
-    case CATEGORIES:
-      setActiveNav(CATEGORIES);
-      return renderCategories();
-
     case FAVORITES:
       setActiveNav(FAVORITES);
       return renderFavorites();
 
-    case ABOUT:
-      setActiveNav(ABOUT);
-      return renderAbout();
+    case TRENDING:
+      setActiveNav(TRENDING);
+      return renderTrending();
+
+    case UPLOAD:
+      setActiveNav(UPLOAD);
+      return renderUpload();
 
     /* if the app supports error login, use default to log mapping errors */
     default:
@@ -49,40 +40,28 @@ export const loadPage = (page = "") => {
   }
 };
 
-export const renderMovieDetails = (id = null) => {
-  const movie = loadSingleMovie(id);
+export const renderGifDetails = async (id = null) => {
+  const gif = await loadSingleGif(id);
+  console.log(gif);
 
-  q(CONTAINER_SELECTOR).innerHTML = toSingleMovieView(movie);
+  q(CONTAINER_SELECTOR).innerHTML = toGifDetailsView(gif);
 };
-
-export const renderCategory = (categoryId = null) => {
-  const category = loadCategory(categoryId);
-  const movies = loadMovies(category.id);
-
-  q(CONTAINER_SELECTOR).innerHTML = toMoviesFromCategoryView(category, movies);
-};
-
-// private functions
 
 const renderHome = () => {
   q(CONTAINER_SELECTOR).innerHTML = toHomeView();
 };
 
-const renderCategories = () => {
-  const categories = loadCategories();
-
-  q(CONTAINER_SELECTOR).innerHTML = toCategoriesView(categories);
-};
-
-const renderFavorites = () => {
+const renderFavorites = async () => {
   const favorites = getFavorites();
-  const movies = favorites.map((id) => loadSingleMovie(id));
+  const gifs = favorites.map(async (id) => await loadSingleGif(id));
 
-  q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(movies);
+  q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(gifs);
 };
 
-const renderAbout = async () => {
-  // console.log(await getTrendingGifs().map(el=>console.log(el))+'promis!');
-  q(CONTAINER_SELECTOR).innerHTML =await toTrendingView();
-  // q(CONTAINER_SELECTOR).innerHTML = "<h1>asdfasdfd</h1>";
+const renderTrending = async () => {
+  q(CONTAINER_SELECTOR).innerHTML = await toTrendingView();
+};
+
+const renderUpload = () => {
+  q(CONTAINER_SELECTOR).innerHTML = toUploadView();
 };
