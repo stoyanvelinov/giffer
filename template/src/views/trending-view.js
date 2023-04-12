@@ -4,7 +4,7 @@ import { toSimpleView } from "./simple-view.js";
 export const toTrendingView = async () => {
   const arr = await getTrendingGifs();
   return `
-    <div id="display-trending">
+    <div id="gif-container">
       <div id="gif-wrapper">
         ${arr.map((gif) => toSimpleView(gif)).join("\n")}
       </div>
