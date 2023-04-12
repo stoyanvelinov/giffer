@@ -1,4 +1,4 @@
-import { HOME } from "./common/constants.js";
+import { HOME, TRENDING } from "./common/constants.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { q } from "./events/helpers.js";
 import { loadPage, renderGifDetails } from "./events/navigation-events.js";
@@ -31,5 +31,5 @@ document.addEventListener("DOMContentLoaded", () => {
   //   q(".gif").style.backgroundColor = "transparent";
   // });
 
-  loadPage(HOME);
+  loadPage(TRENDING);
 });
