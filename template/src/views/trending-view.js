@@ -1,21 +1,13 @@
-import { getTrendingGifs } from "../data/movies.js";
+import { getTrendingGifs } from "../data/api-calls.js";
+import { toSimpleView } from "./simple-view.js";
 
-export function toSimpleView(el) {
-  return `
-  <img src="${el.images.downsized.url}" alt="this slowpoke moves" class="gif"  />
-  `;
-}
-//preview.gif 55x
 export const toTrendingView = async () => {
-  console.log(await getTrendingGifs()+'to trending view');
-  const arr = await getTrendingGifs()
+  const arr = await getTrendingGifs();
   return `
-<div id="display-trending">
-  <div class="content">
-  ${arr
-    .map((el) => toSimpleView(el))
-    .join("\n")}
-  </div>
-</div>
-`;
+    <div id="gif-container">
+      <div id="gif-wrapper">
+        ${arr.map((gif) => toSimpleView(gif)).join("\n")}
+      </div>
+    </div>
+  `;
 };

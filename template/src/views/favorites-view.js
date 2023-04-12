@@ -1,10 +1,8 @@
-import { toMovieSimple } from './movie-views.js';
-
-export const toFavoritesView = (movies) => `
-<div id="movies">
-  <h1>Favorite movies:</h1>
-  <div class="content">
-    ${movies.map(toMovieSimple).join('\n') || '<p>Add some movies to favorites to see them here.</p>'}
+export const toFavoritesView = (gifs) => `
+<div id="display-favorite">
+  <h1>Favorite gifs:</h1>
+  <div id="gif-wrapper">
+  <h3>TODO</h3>
   </div>
 </div>
 `;
