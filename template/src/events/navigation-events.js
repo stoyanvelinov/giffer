@@ -14,6 +14,7 @@ import { q, setActiveNav } from "./helpers.js";
 import { getFavorites } from "../data/favorites.js";
 import { toTrendingView } from "../views/trending-view.js";
 import { toUploadView } from "../views/upload-view.js";
+import { uploadGif } from "../data/api-calls.js";
 
 // public API
 export const loadPage = (page = "") => {
@@ -33,6 +34,8 @@ export const loadPage = (page = "") => {
     case UPLOAD:
       setActiveNav(UPLOAD);
       return renderUpload();
+
+
 
     /* if the app supports error login, use default to log mapping errors */
     default:
@@ -64,4 +67,8 @@ const renderTrending = async () => {
 
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
+  q("#gif-file").addEventListener("change", (e) => {
+    console.log(e+'kuvto i dae');
+    q("#msg").innerHTML = `<p></p>`
+  });
 };
