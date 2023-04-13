@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       uploadGif(e)
     }
   });
-
+ 
   // search events
   q("input#search").addEventListener("input", (e) => {
     renderSearchItems(e.target.value);

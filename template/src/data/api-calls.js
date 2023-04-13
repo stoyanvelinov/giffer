@@ -1,4 +1,7 @@
-import { GIPHY_KEY, DOMAIN } from "../common/constants.js";
+import { GIPHY_KEY, DOMAIN, successMSG,notLoadedMSG } from "../common/constants.js";
+import { addUploaded } from "./upload.js";
+import { q } from "../events/helpers.js";
+
 
 export const getTrendingGifs = async () => {
   try {
@@ -36,18 +39,33 @@ export const getGifById = async (gifId) => {
 
 
 export const uploadGif = async (е) => {
-  const file = document.getElementById("gif-file").files[0];
+  const file = document.getElementById("gif-file").files[0]
+
+  if (!file) {
+    q('#msg').innerHTML = notLoadedMSG
+    return
+  }
+
+
+  console.log(file + 'file');
   const formData = new FormData();
   formData.append("file", file);
   try {
-      const response = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${GIPHY_KEY}`, {
-          method: "POST",
-          body: formData,
-        });
-        
-      const result = await response.json();
-      console.log(result+'upload successful');
+    const response = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${GIPHY_KEY}`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+    const gifId = result.data.id
+    addUploaded(gifId)
+    q('#msg').innerHTML = successMSG
+    q('#gif-file').value = ""
+
+    console.log(result.data.id + ' upload successful');
+
   } catch (err) {
-      console.error(err);
+    console.error(err);
+    q('#msg').innerHTML = notLoadedMSG
   }
 };

@@ -15,3 +15,5 @@ export const removeFavorite = (gifId) => {
 };
 
 export const getFavorites = () => [...favorites];
+
+
