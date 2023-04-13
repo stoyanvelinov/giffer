@@ -3,6 +3,7 @@ import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { q } from "./events/helpers.js";
 import { loadPage, renderGifDetails } from "./events/navigation-events.js";
 import { renderSearchItems } from "./events/search-events.js";
+import {uploadGif} from "./data/api-calls.js"
 
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
@@ -19,6 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // toggle favorite event
     if (e.target.classList.contains("favorite")) {
       toggleFavoriteStatus(+e.target.getAttribute("data-movie-id"));
+    }
+
+    // upload gif event
+    if (e.target.classList.contains('upload-file')){
+      uploadGif(e)
     }
   });
 

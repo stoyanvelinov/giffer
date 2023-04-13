@@ -32,3 +32,22 @@ export const getGifById = async (gifId) => {
     console.error(error);
   }
 };
+
+
+
+export const uploadGif = async (е) => {
+  const file = document.getElementById("gif-file").files[0];
+  const formData = new FormData();
+  formData.append("file", file);
+  try {
+      const response = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${GIPHY_KEY}`, {
+          method: "POST",
+          body: formData,
+        });
+        
+      const result = await response.json();
+      console.log(result+'upload successful');
+  } catch (err) {
+      console.error(err);
+  }
+};
