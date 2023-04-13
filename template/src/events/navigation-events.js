@@ -5,13 +5,16 @@ import {
   HOME,
   TRENDING,
   UPLOAD,
+  COLLECTION
 } from "../common/constants.js";
 import { loadSingleGif } from "../requests/request-service.js";
 import { toFavoritesView } from "../views/favorites-view.js";
-import { toHomeView } from "../views/home-view.js";
+import { toCollectionView } from "../views/collection-view.js";
+// import { toHomeView } from "../views/collection-view.js";
 import { toGifDetailsView } from "../views/detail-view.js";
 import { q, setActiveNav } from "./helpers.js";
 import { getFavorites } from "../data/favorites.js";
+import { getUploaded } from "../data/upload.js";
 import { toTrendingView } from "../views/trending-view.js";
 import { toUploadView } from "../views/upload-view.js";
 import { uploadGif } from "../data/api-calls.js";
@@ -19,9 +22,9 @@ import { uploadGif } from "../data/api-calls.js";
 // public API
 export const loadPage = (page = "") => {
   switch (page) {
-    case HOME:
-      setActiveNav(HOME);
-      return renderHome();
+    case COLLECTION:
+      setActiveNav(COLLECTION);
+      return renderCollection();
 
     case FAVORITES:
       setActiveNav(FAVORITES);
@@ -50,8 +53,9 @@ export const renderGifDetails = async (id = null) => {
   q(CONTAINER_SELECTOR).innerHTML = toGifDetailsView(gif);
 };
 
-const renderHome = () => {
-  q(CONTAINER_SELECTOR).innerHTML = toHomeView();
+const renderCollection = async () => {
+  const ids = getUploaded();
+  q(CONTAINER_SELECTOR).innerHTML = await toCollectionView(ids);
 };
 
 const renderFavorites = async () => {
@@ -68,7 +72,7 @@ const renderTrending = async () => {
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
   q("#gif-file").addEventListener("change", (e) => {
-    console.log(e+'kuvto i dae');
+    console.log(e + 'kuvto i dae');
     q("#msg").innerHTML = `<p></p>`
   });
 };

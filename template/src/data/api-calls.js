@@ -1,4 +1,4 @@
-import { GIPHY_KEY, DOMAIN, successMSG,notLoadedMSG } from "../common/constants.js";
+import { GIPHY_KEY, DOMAIN, successMSG, notLoadedMSG } from "../common/constants.js";
 import { addUploaded } from "./upload.js";
 import { q } from "../events/helpers.js";
 
@@ -36,7 +36,16 @@ export const getGifById = async (gifId) => {
   }
 };
 
-
+export const getGifsByIds = async (gifsIds) => {
+  const url = `https://api.giphy.com/v1/gifs?api_key=${GIPHY_KEY}&ids=${gifsIds}`;
+  try {
+    const gifs = await fetch(url);
+    const result = await gifs.json();
+    return result.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export const uploadGif = async (е) => {
   const file = document.getElementById("gif-file").files[0]
