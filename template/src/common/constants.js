@@ -3,6 +3,8 @@ export const GIPHY_KEY = "zZCLyqjkcBZBOuCVgKxXBzGb1pUy5ZoQ";
 
 export const HOME = "home";
 
+export const COLLECTION = "collection";
+
 export const UPLOAD = "upload";
 
 export const FAVORITES = "favorites";
