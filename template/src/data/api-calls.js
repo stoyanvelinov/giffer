@@ -1,7 +1,11 @@
-import { GIPHY_KEY, DOMAIN, successMSG, notLoadedMSG } from "../common/constants.js";
+import {
+  GIPHY_KEY,
+  DOMAIN,
+  successMSG,
+  notLoadedMSG,
+} from "../common/constants.js";
 import { addUploaded } from "./upload.js";
 import { q } from "../events/helpers.js";
-
 
 export const getTrendingGifs = async () => {
   try {
@@ -36,45 +40,46 @@ export const getGifById = async (gifId) => {
   }
 };
 
-export const getGifsByIds = async (gifsIds) => {
-  const url = `https://api.giphy.com/v1/gifs?api_key=${GIPHY_KEY}&ids=${gifsIds}`;
+export const getGifsByIds = async (favIds) => {
+  const id = favIds.join("%2C");
+  const url = `https://api.giphy.com/v1/gifs?api_key=${GIPHY_KEY}&ids=${id}`;
   try {
-    const gifs = await fetch(url);
-    const result = await gifs.json();
+    const gif = await fetch(url);
+    const result = await gif.json();
     return result.data;
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const uploadGif = async (е) => {
-  const file = document.getElementById("gif-file").files[0]
+  const file = document.getElementById("gif-file").files[0];
 
   if (!file) {
-    q('#msg').innerHTML = notLoadedMSG
-    return
+    q("#msg").innerHTML = notLoadedMSG;
+    return;
   }
 
-
-  console.log(file + 'file');
   const formData = new FormData();
   formData.append("file", file);
   try {
-    const response = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${GIPHY_KEY}`, {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      `https://upload.giphy.com/v1/gifs?api_key=${GIPHY_KEY}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const result = await response.json();
-    const gifId = result.data.id
-    addUploaded(gifId)
-    q('#msg').innerHTML = successMSG
-    q('#gif-file').value = ""
+    const gifId = result.data.id;
+    addUploaded(gifId);
+    q("#msg").innerHTML = successMSG;
+    q("#gif-file").value = "";
 
-    console.log(result.data.id + ' upload successful');
-
+    // console.log(result.data.id + ' upload successful');
   } catch (err) {
     console.error(err);
-    q('#msg').innerHTML = notLoadedMSG
+    q("#msg").innerHTML = notLoadedMSG;
   }
 };

@@ -38,8 +38,6 @@ export const loadPage = (page = "") => {
       setActiveNav(UPLOAD);
       return renderUpload();
 
-
-
     /* if the app supports error login, use default to log mapping errors */
     default:
       return null;
@@ -59,10 +57,10 @@ const renderCollection = async () => {
 };
 
 const renderFavorites = async () => {
-  const favorites = getFavorites();
-  const gifs = favorites.map(async (id) => await loadSingleGif(id));
+  // const favorites = getFavorites();
+  // const gifs = favorites.map(async (id) => await loadSingleGif(id));
 
-  q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(gifs);
+  q(CONTAINER_SELECTOR).innerHTML = await toFavoritesView();
 };
 
 const renderTrending = async () => {
@@ -72,7 +70,7 @@ const renderTrending = async () => {
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
   q("#gif-file").addEventListener("change", (e) => {
-    console.log(e + 'kuvto i dae');
-    q("#msg").innerHTML = `<p></p>`
+    console.log(e + "kuvto i dae");
+    q("#msg").innerHTML = `<p></p>`;
   });
 };
