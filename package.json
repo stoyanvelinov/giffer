@@ -1,0 +1,23 @@
+{
+  "name": "team11-giphy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/stoyan.velinov/team11-giphy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/stoyan.velinov/team11-giphy/issues"
+  },
+  "homepage": "https://gitlab.com/stoyan.velinov/team11-giphy#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

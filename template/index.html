@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GIPHER</title>
   <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/creator.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 </head>
 
 <body>
@@ -18,7 +20,8 @@
         <a href="#" class="nav-link" data-page="collection">MyGifs</a> |
         <a href="#" class="nav-link" data-page="favorites">Favorites</a>
         <a href="#" class="nav-link" data-page="trending">Trending</a>
-        <a href="#" class="nav-link" data-page="upload">Upload</a> |
+        <a href="#" class="nav-link" data-page="upload">Upload</a> 
+        <a href="#" class="nav-link" data-page="create">Create</a> &nbsp;&nbsp;
       </nav>
       <input id="search" type="text" placeholder="Search for Gifs">
     </header>
@@ -29,11 +32,16 @@
 
     <!-- end placeholders -->
   </div>
-  <footer></footer>
+  <footer>
+    <br>
+    <br>
+  </footer>
   </div>
 
   <!-- app -->
   <script src="./src/index.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
   <!-- end app -->
 </body>
 

@@ -5,7 +5,8 @@ import {
   HOME,
   TRENDING,
   UPLOAD,
-  COLLECTION
+  CREATE,
+  COLLECTION,
 } from "../common/constants.js";
 import { loadSingleGif } from "../requests/request-service.js";
 import { toFavoritesView } from "../views/favorites-view.js";
@@ -18,6 +19,8 @@ import { getUploaded } from "../data/upload.js";
 import { toTrendingView } from "../views/trending-view.js";
 import { toUploadView } from "../views/upload-view.js";
 import { uploadGif } from "../data/api-calls.js";
+import { toCreatorView } from "../views/creator-view.js";
+import { loadCreator } from "./creator-events.js";
 
 // public API
 export const loadPage = (page = "") => {
@@ -37,6 +40,10 @@ export const loadPage = (page = "") => {
     case UPLOAD:
       setActiveNav(UPLOAD);
       return renderUpload();
+
+    case CREATE:
+      setActiveNav(CREATE);
+      return renderCreate();
 
     /* if the app supports error login, use default to log mapping errors */
     default:
@@ -67,10 +74,13 @@ const renderTrending = async () => {
   q(CONTAINER_SELECTOR).innerHTML = await toTrendingView();
 };
 
+const renderCreate = async () => {
+  q(CONTAINER_SELECTOR).innerHTML = toCreatorView();
+};
+
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
   q("#gif-file").addEventListener("change", (e) => {
-    console.log(e + "kuvto i dae");
     q("#msg").innerHTML = `<p></p>`;
   });
 };
