@@ -7,14 +7,12 @@ import { uploadGif } from "./data/api-calls.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
+
   document.addEventListener("click", async (e) => {
+
     // nav events
     if (e.target.classList.contains("nav-link")) {
       await loadPage(e.target.getAttribute("data-page"));
-    }
-
-    if (e.target.classList.contains("gif-detail-btn")) {
-      renderGifDetails(e.target.getAttribute("gif-id"));
     }
 
     // toggle favorite event
@@ -29,9 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // search events
-  q("input#search").addEventListener("input", (e) => {
+  q("#search--input").addEventListener("input", (e) => {
     renderSearchItems(e.target.value);
   });
+
+  //Open and Close Navigation events
+  q(".navbar--close-icon").addEventListener("click", () => {
+    q(".nav--open").classList.toggle("hide");
+    q(".navbar--container").classList.toggle("hide");
+  });
+
+  q(".nav--open-icon").addEventListener("click", () => {
+    q(".nav--open").classList.toggle("hide");
+    q(".navbar--container").classList.toggle("hide");
+  })
 
   // window.addEventListener("load", function () {
   //   q(".gif").style.backgroundColor = "transparent";
