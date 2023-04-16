@@ -9,29 +9,54 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div id="app">
-    <header>
-      <nav>
-        <a href="#" class="nav-link" data-page="collection">MyGifs</a> |
+    <header id="main--header" class="sticky">
+      <div id="main--header-flex">
+        <div id="search--box">
+          <input id="search--input" type="text" name="" placeholder="Search...">
+          <i class="fa fa-search"></i>
+        </div>
+        <div id="logo">
+          GIPHER
+        </div>
+      </div>
+    </header>
+    <div class="navbar--container show sticky">
+      <div class="navbar--title">
+        <h4>EXPLORE
+        </h4>
+      </div>
+      <span class="navbar--icon">
+        <i class="fa fa-bars"></i>
+      </span>
+    </div>
+    <div class="nav--open hide sticky">
+      <span class="nav--open-icon">
+        <i class="fa fa-times">
+        </i>
+      </span>
+      <nav class="nav--open-menu">
+        <a href="#" class="nav-link" data-page="collection">MyGifs</a>
         <a href="#" class="nav-link" data-page="favorites">Favorites</a>
         <a href="#" class="nav-link" data-page="trending">Trending</a>
-        <a href="#" class="nav-link" data-page="upload">Upload</a> |
+        <a href="#" class="nav-link" data-page="upload">Upload</a>
       </nav>
-      <input id="search" type="text" placeholder="Search for Gifs">
-    </header>
-  </div>
-  <div id="container">
+    </div>
+    <div id="container">
+      <!-- start placeholders -->
 
-    <!-- start placeholders -->
-
-    <!-- end placeholders -->
+      <!-- end placeholders -->
+    </div>
   </div>
-  <footer></footer>
+  <footer>
+  </footer>
   </div>
-
   <!-- app -->
   <script src="./src/index.js" type="module"></script>
   <!-- end app -->
