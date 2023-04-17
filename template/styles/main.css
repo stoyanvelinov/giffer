@@ -90,6 +90,10 @@ nav {
   text-transform: uppercase;
 }
 
+.nav-link .active {
+  color:white;
+}
+
 /*search bar*/
 #search {
   flex-basis: 500px;
