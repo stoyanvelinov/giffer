@@ -1,9 +1,11 @@
 export const toUploadView = () => {
   return `
-      <div id="display-upload">
+  <div id="upload-container">
+    <div id="display-upload">
       <input type="file" accept="gif" id="gif-file" name="file">
-      <button class="upload-file"type="submit">Submit</button>
+      <button class="upload-file btn"type="submit">Submit</button>
       <div id="msg"></div>
-      </div>
-    `;
+    </div>
+  </div>
+  `;
 };

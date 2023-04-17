@@ -11,7 +11,7 @@ html {
   /**shadows**/
   /* --light-text-shadow: .5px 1px 2px var(--dark); */
   --small-shadow: 1px 2px 3px var(--dark);
-  --medium-shadow: 1px 2px 9px var(--dark);
+  --medium-shadow: 1px 2px 7px var(--dark);
   --big-shadow: 8px 8px 20px var(--dark);
   /*vertical*/
   --small-shadow-v: 1px -2px 3px var(--dark);
@@ -23,6 +23,10 @@ body {
   font-family: 'DynaPuff', cursive;
 }
 
+#container {
+  height: 100vh;
+}
+
 #app {
   padding-top: 40px;
 }
@@ -32,6 +36,35 @@ body {
   position: fixed;
   top: 0;
   z-index: 10;
+}
+
+/**BUTTONS**/
+.btn {
+  display: inline-block;
+  font-size: 1em;
+  font-family: inherit;
+  text-shadow: var(--small-shadow);
+  border: none;
+  background-color: var(--main);
+  border-radius: 20px;
+  color: var(--white);
+  padding: 0.8em 1.5em;
+  box-shadow: var(--medium-shadow);
+  transition: all 0.1s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: var(--small-shadow);
+}
+
+#gif-file {
+  background-color: var(--dark-transparent);
+  font-family: inherit;
 }
 
 /**LOADER**/
@@ -274,6 +307,7 @@ body {
 }
 
 #gif-container {
+
   max-width: 70%;
   border-color: black;
   /* border: solid 2px; */
@@ -353,6 +387,22 @@ body {
 .gif-info p {
   font-size: 30px;
   text-align: center;
+}
+
+/**UPLOAD FORM**/
+#upload-container {
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: start;
+  margin-top: 70px;
+}
+
+#display-upload {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 /**MEDIA QUERIES**/
