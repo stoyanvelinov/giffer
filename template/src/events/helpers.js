@@ -10,8 +10,8 @@ export const setActiveNav = (page) => {
 
   Array.from(navs).forEach((element) =>
     element.getAttribute("data-page") === page
-      ? element.classList.add("active")
-      : element.classList.remove("active")
+      ? element.classList.add("current")
+      : element.classList.remove("current")
   );
 };
 
