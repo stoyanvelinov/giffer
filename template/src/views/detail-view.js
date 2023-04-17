@@ -1,13 +1,16 @@
 import { EMPTY_HEART } from "../common/constants.js";
+import { renderFavoriteStatus } from "../events/helpers.js";
 
-export const toGifDetailsView = (gif) => `
-<div class="gif-info">
+export const toGifDetailsView = (gif) => {
+  const selectedVersion = gif.images.original;
+  return `
+  <div class="gif-info">
       <p>${gif.title}</p>
     </div>
   <div id="gif-detailed">
   
     <div id="gif-preview">
-      <img src="${gif.images.original.webp}">
+      <img src="${selectedVersion.webp}">
     </div>
     <div id="gif-details">
       <div>
@@ -15,8 +18,12 @@ export const toGifDetailsView = (gif) => `
       </p>
       <p> <span><i class="fa fa-user"></i></span> ${gif.username || 'Anonymous'}
       </p>
+      <p> size: ${selectedVersion.height} X ${selectedVersion.width}
+      </p>
       </div>
-      <span id="heart">${EMPTY_HEART}</span>
+      <div id="heart">${renderFavoriteStatus(gif.id)}</div>
     </div>
   </div>
 `;
+}
+

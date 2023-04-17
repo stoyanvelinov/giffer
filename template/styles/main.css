@@ -323,7 +323,7 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  gap: 5px;
+  /* gap: 5px; */
 }
 
 #gif-preview {
@@ -336,12 +336,18 @@ body {
 }
 
 #heart {
+  align-self: center;
+}
+
+#heart .active,
+#heart .favorite {
   font-size: 40px;
+  color: var(--red);
+  cursor: pointer;
 }
 
 #heart:hover {
   transform: scale(1.2) translateY(-3px);
-
 }
 
 .gif-info p {
