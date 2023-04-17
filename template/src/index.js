@@ -37,6 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
     q(CONTAINER_SELECTOR).innerHTML = loader();
     await renderSearchItems(e.target.value);
   });
+  q("#search--input").addEventListener("focusout", (e) => {
+    e.target.value = "";
+  });
 
   //Open and Close Navigation events
   q(".navbar--close-icon").addEventListener("click", () => {
