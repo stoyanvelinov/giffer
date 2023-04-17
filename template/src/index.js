@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
       await loadPage(e.target.getAttribute("data-page"));
     }
 
+    // gif details
+    if (e.target.classList.contains("gif-detail-btn")) {
+      renderGifDetails(e.target.getAttribute("gif-id"));
+    }
+
     // toggle favorite event
     if (e.target.classList.contains("favorite")) {
       toggleFavoriteStatus(e.target.getAttribute("gif-id"));
