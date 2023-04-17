@@ -3,20 +3,36 @@ import {
   DOMAIN,
   successMSG,
   notLoadedMSG,
+  NUM_GIFS_TO_LOAD
 } from "../common/constants.js";
 import { addUploaded } from "./upload.js";
 import { q } from "../events/helpers.js";
+import { toSimpleView } from "../views/simple-view.js";
 
+let offset = 0;
 export const getTrendingGifs = async () => {
   try {
-    const url = `${DOMAIN}trending?api_key=${GIPHY_KEY}&limit=50&rating=g`;
+    const loader = document.querySelector('.loader');
+    loader?.classList?.add('show');
+    console.log(offset, '=offset ')
+
+    const url = `${DOMAIN}trending?api_key=${GIPHY_KEY}&limit=${NUM_GIFS_TO_LOAD}&offset=${offset}&rating=g`;
+  
     const gifs = await fetch(url);
     const result = await gifs.json();
-    return result.data;
+    offset += NUM_GIFS_TO_LOAD;
+    loader?.classList?.remove('show');
+    const gifWraper = q('#gif-wrapper');
+
+    const htmlGifs = result.data.map((gif) => toSimpleView(gif)).join('\n');
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = htmlGifs;
+    gifWraper.append(tempElement);
   } catch (err) {
-    return err.message;
+    loader?.classList?.remove('show')
+    return err.message
   }
-};
+}
 
 export const getSearchedGifs = async (title) => {
   try {

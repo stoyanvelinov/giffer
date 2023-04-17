@@ -4,6 +4,8 @@ import { q } from "./events/helpers.js";
 import { loadPage, renderGifDetails } from "./events/navigation-events.js";
 import { renderSearchItems } from "./events/search-events.js";
 import { uploadGif } from "./data/api-calls.js";
+import { getTrendingGifs } from "./data/api-calls.js";
+import { updateInput } from "./events/search-events.js"
 
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
@@ -25,10 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
       uploadGif(e);
     }
   });
-
-  // search events
+  //search event
   q("#search--input").addEventListener("input", (e) => {
-    renderSearchItems(e.target.value);
+    updateInput(e.target.value);
   });
 
   //Open and Close Navigation events
@@ -45,6 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.addEventListener("load", function () {
   //   q(".gif").style.backgroundColor = "transparent";
   // });
+
+
+  //scroll event inProgress
+  let isFetchingTrending = false;
+  window.addEventListener('scroll', async () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      if (!isFetchingTrending) {
+        isFetchingTrending = true;
+        await getTrendingGifs();
+        isFetchingTrending = false;
+      }
+    }
+  });
+
 
   loadPage(TRENDING);
 });

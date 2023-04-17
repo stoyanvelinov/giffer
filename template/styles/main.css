@@ -102,6 +102,18 @@ body {
 .current {
   color: var(--black);
 }
+/*pepicss*/
+.loader {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.show {
+  visibility: initial;
+  width: auto;
+  height: auto;
+}
 
 /*NAVIGATION - closed*/
 .navbar--container {
@@ -201,7 +213,42 @@ body {
 .show {
   transition: all .3s ease-out;
 }
+/*UPLOAD file*/
+#display-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  width: 50%;
+}
 
+#gif-file {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid var(--white);
+  border-radius: 5px;
+  font-size: 16px;
+}
+/*upload button*/
+.upload-btn {
+  background-color: var(--main);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.upload-btn:hover {
+  background-color: var(--dark-transparent);
+}
 /*GIFS*/
 #gif-wrapper {
   line-height: 0;

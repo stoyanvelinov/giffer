@@ -18,6 +18,8 @@ import { getUploaded } from "../data/upload.js";
 import { toTrendingView } from "../views/trending-view.js";
 import { toUploadView } from "../views/upload-view.js";
 import { uploadGif } from "../data/api-calls.js";
+import { getTrendingGifs } from "../data/api-calls.js";
+import { LOADER } from "../common/constants.js";
 
 // public API
 export const loadPage = (page = "") => {
@@ -64,13 +66,14 @@ const renderFavorites = async () => {
 };
 
 const renderTrending = async () => {
-  q(CONTAINER_SELECTOR).innerHTML = await toTrendingView();
+  q(CONTAINER_SELECTOR).innerHTML = `${toTrendingView()} ${LOADER}`;
+  await getTrendingGifs();
 };
+
 
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
-  q("#gif-file").addEventListener("change", (e) => {
-    console.log(e + "kuvto i dae");
+  q("#gif-file").addEventListener("change", () => {
     q("#msg").innerHTML = `<p></p>`;
   });
 };

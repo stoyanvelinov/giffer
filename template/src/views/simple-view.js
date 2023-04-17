@@ -10,3 +10,6 @@ export function toSimpleView(gif) {
   </div>
     `;
 }
+// export function toSimpleView(gif) {
+//   return `<img src="${gif.images.original.url}" alt="${gif.title}" loading="lazy" class="gif gif-detail-btn" gif-id = "${gif.id}"/>`;
+// }
