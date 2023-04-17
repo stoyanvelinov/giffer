@@ -1,10 +1,10 @@
-import { HOME, TRENDING } from "./common/constants.js";
+import { CONTAINER_SELECTOR, TRENDING } from "./common/constants.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { q } from "./events/helpers.js";
 import { loadPage, renderGifDetails } from "./events/navigation-events.js";
 import { renderSearchItems } from "./events/search-events.js";
 import { uploadGif } from "./data/api-calls.js";
-
+import { loader } from "./events/helpers.js";
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
 
@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // nav events
     if (e.target.classList.contains("nav-link")) {
+      q(CONTAINER_SELECTOR).innerHTML = loader();
       await loadPage(e.target.getAttribute("data-page"));
     }
 
@@ -27,8 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // search events
-  q("#search--input").addEventListener("input", (e) => {
-    renderSearchItems(e.target.value);
+  q("#search--input").addEventListener("input", async (e) => {
+    q(CONTAINER_SELECTOR).innerHTML = loader();
+    await renderSearchItems(e.target.value);
   });
 
   //Open and Close Navigation events
@@ -45,6 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.addEventListener("load", function () {
   //   q(".gif").style.backgroundColor = "transparent";
   // });
-
+  q(CONTAINER_SELECTOR).innerHTML = loader();
   loadPage(TRENDING);
 });

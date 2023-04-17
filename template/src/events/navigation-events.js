@@ -21,6 +21,7 @@ import { uploadGif } from "../data/api-calls.js";
 
 // public API
 export const loadPage = (page = "") => {
+
   switch (page) {
     case COLLECTION:
       setActiveNav(COLLECTION);
@@ -70,7 +71,6 @@ const renderTrending = async () => {
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
   q("#gif-file").addEventListener("change", (e) => {
-    console.log(e + "kuvto i dae");
     q("#msg").innerHTML = `<p></p>`;
   });
 };
