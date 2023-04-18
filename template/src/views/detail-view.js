@@ -1,4 +1,3 @@
-import { EMPTY_HEART } from "../common/constants.js";
 import { renderFavoriteStatus } from "../events/helpers.js";
 /**
 Returns the HTML markup for the detailed view of a GIF, including its title, preview image, and metadata.

@@ -7,7 +7,8 @@ import { q } from "./helpers.js";
  * Renders search items based on the search term
  * @param {string} searchTerm - The search term to be used for searching gifs
  * @returns {void} 
- */export const renderSearchItems = async (searchTerm) => {
+ */
+export const renderSearchItems = async (searchTerm) => {
   q(CONTAINER_SELECTOR).innerHTML = await toSearchView(searchTerm);
 };
 

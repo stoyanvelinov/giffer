@@ -13,15 +13,12 @@ export const toCollectionView = async (ids) => {
   const arr = await getGifsByIds(ids);
   return `
   <div id="gif-container">
-   <h1>My Collection</h1>
    <div id="gif-wrapper">
-    <div class="content">
-    ${arr.map((el) => toSimpleView(el)).join("\n") ||
-    "<p>You have not uploaded any gifs yet :(</p>"}
+    ${arr
+      ? arr.map((el) => toSimpleView(el)).join("\n")
+      : "<h3>No gifs here</h3>"
+    }
    </div>
- </div>
-</div>
-  
+  </div>
 `;
-
-}
+};
