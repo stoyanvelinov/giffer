@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.classList.contains("upload-file")) {
       uploadGif(e);
     }
+
+    if (e.target.classList.contains("upload-gif-file")) {
+      uploadGif(e);
+    }
   });
 
   // search events

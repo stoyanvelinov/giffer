@@ -20,7 +20,7 @@ import { toTrendingView } from "../views/trending-view.js";
 import { toUploadView } from "../views/upload-view.js";
 import { uploadGif } from "../data/api-calls.js";
 import { toCreatorView } from "../views/creator-view.js";
-import { loadCreator } from "./creator-events.js";
+import { createGifModule } from "../data/creator/creator.js";
 
 // public API
 export const loadPage = (page = "") => {
@@ -76,6 +76,7 @@ const renderTrending = async () => {
 
 const renderCreate = async () => {
   q(CONTAINER_SELECTOR).innerHTML = toCreatorView();
+  createGifModule(window, document);
 };
 
 const renderUpload = () => {

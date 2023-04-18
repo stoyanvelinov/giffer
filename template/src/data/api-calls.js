@@ -83,3 +83,36 @@ export const uploadGif = async (е) => {
     q("#msg").innerHTML = notLoadedMSG;
   }
 };
+
+export const uploadNewGif = async (е) => {
+  const file = document.getElementById("save-gif").files;
+
+  if (!file) {
+    q("#msg").innerHTML = notLoadedMSG;
+    return;
+  }
+  console.log(file);
+
+  const formData = new FormData();
+  formData.append("file", file);
+  try {
+    const response = await fetch(
+      `https://upload.giphy.com/v1/gifs?api_key=${GIPHY_KEY}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const result = await response.json();
+    const gifId = result.data.id;
+    addUploaded(gifId);
+    q("#msg").innerHTML = successMSG;
+    q("#gif-file").value = "";
+
+    // console.log(result.data.id + ' upload successful');
+  } catch (err) {
+    console.error(err);
+    q("#msg").innerHTML = notLoadedMSG;
+  }
+};
