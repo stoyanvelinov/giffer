@@ -1,4 +1,4 @@
-import { CONTAINER_SELECTOR, TRENDING } from "./common/constants.js";
+import { CONTAINER_SELECTOR, COLLECTION,TRENDING } from "./common/constants.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { q } from "./events/helpers.js";
 import { loadPage, renderGifDetails } from "./events/navigation-events.js";
@@ -85,5 +85,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   q(CONTAINER_SELECTOR).innerHTML = loader();
-  loadPage(TRENDING);
+  loadPage(COLLECTION);
 });

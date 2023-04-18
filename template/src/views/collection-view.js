@@ -1,7 +1,9 @@
 import { getGifsByIds } from "../data/api-calls.js";
 import { toSimpleView } from "./simple-view.js";
+
+
+
 export const toCollectionView = async (ids) => {
-  // const str = ids.join(",");
   const arr = await getGifsByIds(ids);
   return `
   <div id="gif-container">

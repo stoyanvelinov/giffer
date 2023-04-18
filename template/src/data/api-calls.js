@@ -19,7 +19,6 @@ Fetches trending GIFs from the Giphy API and appends them to the DOM.
 */
 export const getTrendingGifs = async () => {
   try {
-    console.log(offset, '=offset ')
     const url = `${DOMAIN}trending?api_key=${GIPHY_KEY}&limit=${NUM_GIFS_TO_LOAD}&offset=${offset}&rating=g`;
     const gifs = await fetch(url);
     const result = await gifs.json();
