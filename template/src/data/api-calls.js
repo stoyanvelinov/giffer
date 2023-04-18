@@ -19,28 +19,17 @@ Fetches trending GIFs from the Giphy API and appends them to the DOM.
 */
 export const getTrendingGifs = async () => {
   try {
-    const loader = document.querySelector('.loader');
-    
-    loader?.classList?.add('show');
     console.log(offset, '=offset ')
-
     const url = `${DOMAIN}trending?api_key=${GIPHY_KEY}&limit=${NUM_GIFS_TO_LOAD}&offset=${offset}&rating=g`;
-  
     const gifs = await fetch(url);
     const result = await gifs.json();
     offset += NUM_GIFS_TO_LOAD;
-    loader?.classList?.remove('show');
-
     const gifWrapper = q('#gif-wrapper');
-
     const htmlGifs = result.data.map((gif) => toSimpleView(gif)).join('\n');
     const tempElement = document.createElement('div');
-  
     tempElement.innerHTML = htmlGifs;
     gifWrapper.append(tempElement);
-
   } catch (err) {
-    loader?.classList?.remove('show')
     return err.message
   }
 }
