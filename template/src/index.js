@@ -9,11 +9,12 @@ import { updateInput } from "./events/search-events.js"
 
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
-
+  let isTrendingPage = false;
   document.addEventListener("click", async (e) => {
 
     // nav events
     if (e.target.classList.contains("nav-link")) {
+      isTrendingPage = (e.target.getAttribute("data-page") === TRENDING);
       await loadPage(e.target.getAttribute("data-page"));
     }
 
@@ -51,14 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
   //scroll event inProgress
   let isFetchingTrending = false;
   window.addEventListener('scroll', async () => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 5) {
-      if (!isFetchingTrending) {
-        isFetchingTrending = true;
-        await getTrendingGifs();
-        isFetchingTrending = false;
+    if (isTrendingPage) {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        if (!isFetchingTrending) {
+          isFetchingTrending = true;
+          await getTrendingGifs();
+          isFetchingTrending = false;
+        }
       }
     }
+
   });
 
 
