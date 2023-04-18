@@ -3,12 +3,15 @@ export const toCreatorView = () => {
   <div id="container">
   <div class="create-container text-center">
       <div class="create-buttons">
-        <span class="options-button-group">
+        <div>
           <a href="#" type="button" id="create-gif" class="btn btn-large btn-primary create-gif-button" role="button">Create GIF</a>
-          <a href="#" type="button" id="save-gif" class="upload-gif btn btn-large btn-default save-gif-button hidden" role="button" download="gifshot-demo.gif">Upload GIF</a>
-        </span>
+        </div>
+        <div>
+          <a href="#" type="button" id="save-gif" class="upload-gif btn btn-large btn-default " role="button" style="padding-left:10px">Upload GIF</a>
+        </div>  
       </div>
       <div class="create-preview">
+      <div id="msg"></div>
         <h5>
           Preview
         </h5>
@@ -33,7 +36,6 @@ export const toCreatorView = () => {
             </div>
             
             <div class="form-group" id="input-container">
-              <label for="gifWidth">Choose File</label>
               <div class="input-group">
                 <input type="file" accept="mp4" id="video-file" name="file" multiple>
                 
@@ -94,23 +96,7 @@ export const toCreatorView = () => {
     </div>
   </div>
   <script src=".src/data/creator/creator.js" type="module"></script>
-  <script>
-    const select = document.getElementById('GIFSource');
-    const inputContainer = document.getElementById('input-container');
-    const input = document.getElementById('input');
-    console.log(inputContainer);
-
-    select.addEventListener('change', () => {
-      if (select.value === 'video' || select.value === 'images') {
-        inputContainer.style.display = 'block';
-      } else {
-        inputContainer.style.display = 'none';
-      }
-    });
-  
-</script>
-
-  
+  <script src=".src/events/creator-events.js" type="module"></script>
 </div>
  
     `;

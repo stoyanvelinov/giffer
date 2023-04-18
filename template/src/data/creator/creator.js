@@ -2,8 +2,7 @@ import { q } from "../../events/helpers.js";
 import { uploadNewGif } from "../api-calls.js";
 
 export function createGifModule(window, document) {
-  const saveGIFButton = q("#save-gif");
-  const downloadAttrSupported = "download" in document.createElement("a");
+  const uploadGIFButton = q("#save-gif");
   const createGIFButton = q("#create-gif");
   const gifSource = q("#GIFSource");
   const interval = q("#interval");
@@ -18,9 +17,6 @@ export function createGifModule(window, document) {
   const textBaseline = q("#textBaseline");
   const gifshotImagePreview = q(".gifshot-image-preview-section");
   const placeholderDiv = q(".placeholder-div");
-  const placeholderDivDimensions = q(".placeholder-div-dimensions");
-  const gifshotCode = q(".gifshot-code");
-  const gifshotCodeTemplate = q(".gifshot-code-template");
   const videoFile = q("#video-file");
 
   const getSelectedOptions = function () {
@@ -35,9 +31,7 @@ export function createGifModule(window, document) {
               "http://i.imgur.com/Vo5mFZJ.gif",
             ]
           : false,
-      //   video: gifSource.value === "video" ? videoFile.files[0] : false,
       video: gifSource.value === "video" ? [videoFile.files[0]] : false,
-      //   video: gifSource.value === "video" ? ["example.mp4"] : false,
       filter: "",
       interval: Number(interval.value),
       numFrames: Number(numFrames.value),
@@ -54,6 +48,8 @@ export function createGifModule(window, document) {
     };
   };
   let passedOptions;
+  uploadGIFButton.style.display = "none";
+  progressBar.style.display = "none";
 
   const bindEvents = function () {
     createGIFButton.addEventListener(
@@ -64,8 +60,8 @@ export function createGifModule(window, document) {
         passedOptions = _.merge(_.clone(getSelectedOptions()), {
           progressCallback: function (captureProgress) {
             gifshotImagePreview.innerHTML = "";
-            placeholderDiv.classList.add("hidden");
-            progressBar.classList.remove("hidden");
+            placeholderDiv.style.display = "none";
+            progressBar.style.display = "block";
             progressBar.value = captureProgress;
           },
         });
@@ -79,19 +75,16 @@ export function createGifModule(window, document) {
             const animatedImage = document.createElement("img");
 
             animatedImage.src = image;
+            animatedImage.id = "generated-gif";
 
-            progressBar.classList.add("hidden");
+            progressBar.style.display = "none";
             progressBar.value = 0;
 
-            placeholderDiv.classList.add("hidden");
+            placeholderDiv.style.display = "none";
             gifshotImagePreview.innerHTML = "";
             gifshotImagePreview.appendChild(animatedImage);
+            uploadGIFButton.style.display = "block";
 
-            if (downloadAttrSupported) {
-              saveGIFButton.setAttribute("href", image);
-              saveGIFButton.setAttribute("files", image);
-              saveGIFButton.classList.remove("hidden");
-            }
           } else {
             console.log("obj.error", obj.error);
             console.log("obj.errorCode", obj.errorCode);
@@ -102,18 +95,9 @@ export function createGifModule(window, document) {
       false
     );
 
-    saveGIFButton.addEventListener("click", function (e) {
+    uploadGIFButton.addEventListener("click", function (e) {
       uploadNewGif(e);
     });
-    // saveGIFButton.addEventListener(
-    //   "click",
-    //   function (e) {
-    //     e.preventDefault();
-
-    //     open(saveGIFButton.getAttribute("href"));
-    //   },
-    //   false
-    // );
   };
 
   bindEvents();
