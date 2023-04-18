@@ -6,10 +6,10 @@ export const toSearchView = async (searchTerm) => {
   return `
     <div id="gif-container">
       <h1>Searching for "${searchTerm}":</h1>
-      <div id="gif-wrapper">
+      <div id="gif-wrapper" class="gif-wrapper-search">
       ${
         searched.map((el) => toSimpleView(el)).join("\n") ||
-        "<p>No gifs match your search</p>"
+        "<p id='p-search'>No gifs match your search</p>"
       }
       </div>
     </div>

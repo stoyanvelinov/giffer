@@ -73,7 +73,14 @@ body {
   justify-content: center;
   align-content: center;
 }
-
+#gif-file {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid var(--white);
+  border-radius: 5px;
+  font-size: 16px;
+}
 #loader {
   margin-top: 70px;
   width: 48px;
@@ -279,10 +286,8 @@ body {
 .show {
   transition: all .3s ease-out;
 }
-
 /*GIFS*/
 #gif-wrapper {
-  line-height: 0;
   -webkit-column-count: 4;
   -webkit-column-gap: 0px;
   -moz-column-count: 5;
@@ -290,6 +295,9 @@ body {
   column-count: 4;
   column-gap: 15px;
   margin-top: 1em;
+  display: inline-block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #gif-wrapper .gif {
@@ -299,22 +307,25 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
-
-#gif-wrapper {
-  display: inline-block;
-  margin-right: auto;
-  margin-left: auto;
+.gif-wrapper-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
 }
-
+#p-search {
+  padding-left: 50px;
+  height: 100%;
+}
 #gif-container {
 
-  max-width: 70%;
+  max-width: 80%;
   border-color: black;
   /* border: solid 2px; */
   /* margin-top: 1em;
     margin-left: auto;
     margin-right: auto; */
-  margin: 1em auto
+  margin: 1em auto;
 }
 
 .gif {
@@ -326,7 +337,10 @@ body {
   transform: scale(1.05);
   box-shadow: var(--big-shadow);
 }
-
+/* #p-search{
+font-size: 18px;
+line-height: 1.5;
+} */
 .gif-and-above {
   position: relative;
 }
