@@ -1,16 +1,25 @@
 export const toCreatorView = () => {
   return `
-    <div class="container text-center">
-    <section class="demo-section v-center">
-    <div class="text-center">
-      <span class="options-button-group">
-        <a href="#" type="button" id="create-gif" class="btn btn-large btn-primary create-gif-button" role="button">Create GIF</a>
-        <a href="#" type="button" id="save-gif" class="upload-gif btn btn-large btn-default save-gif-button hidden" role="button" download="gifshot-demo.gif">Upload GIF</a>
-      </span>
-    </div>
-    <div class="ml-3">
-      <div class="row">
-        <div class="col-md-4 options-section m-3">
+  <div id="container">
+  <div class="create-container text-center">
+      <div class="create-buttons">
+        <span class="options-button-group">
+          <a href="#" type="button" id="create-gif" class="btn btn-large btn-primary create-gif-button" role="button">Create GIF</a>
+          <a href="#" type="button" id="save-gif" class="upload-gif btn btn-large btn-default save-gif-button hidden" role="button" download="gifshot-demo.gif">Upload GIF</a>
+        </span>
+      </div>
+      <div class="create-preview">
+        <h5>
+          Preview
+        </h5>
+        
+        <section class="gifshot-image-preview-section"></section>
+        <div class="placeholder-div hidden">
+          <span class="placeholder-div-dimensions"></span>
+        </div>
+        <progress max="1" value="0" class="gifshot-progress-bar hidden"></progress>
+      </div>
+    <div class="create-options">
           <form class="options-form" action="">
             <div class="form-group">
               <label for="GIFSource">GIF Source</label>
@@ -23,25 +32,29 @@ export const toCreatorView = () => {
               </div>
             </div>
             
+            <div class="form-group" id="input-container">
+              <label for="gifWidth">Choose File</label>
+              <div class="input-group">
+                <input type="file" accept="mp4" id="video-file" name="file" multiple>
+                
+              </div>
+            </div>
             <div class="form-group">
-              <label for="gifWidth">GIF Width</label>
+              <label for="gifWidth">GIF Width - in pixels</label>
               <div class="input-group">
                 <input name="gifWidth" id="gifWidth" class="form-control" value="200" size="5" type="number"></input>
-                <div class="input-group-addon">px</div>
               </div>
             </div>
             <div class="form-group">
-              <label for="gifHeight">GIF Height</label>
+              <label for="gifHeight">GIF Height - in pixels </label>
               <div class="input-group">
                 <input name="gifHeight" id="gifHeight" class="form-control" value="200" size="5" type="number"></input>
-                <div class="input-group-addon">px</div>
               </div>
             </div>
             <div class="form-group">
-              <label for="interval">Interval</label>
+              <label for="interval">Interval - in seconds</label>
               <div class="input-group">
                 <input name="interval" id="interval" class="form-control" value=".1" step=".1" size="5" type="number"></input>
-                <div class="input-group-addon">secs</div>
               </div>
             </div>
             <div class="form-group">
@@ -57,10 +70,9 @@ export const toCreatorView = () => {
               <input name="gifText" id="gifText" class="form-control" value="" size="30" placeholder="Add text here..."></input>
             </div>
             <div class="form-group">
-              <label for="fontSize">Font Size</label>
+              <label for="fontSize">Font Size - in pixels</label>
               <div class="input-group">
                 <input name="fontSize" id="fontSize" class="form-control" value="16" size="5" type="number"></input>
-                <div class="input-group-addon">px</div>
               </div>
             </div>
             
@@ -79,33 +91,27 @@ export const toCreatorView = () => {
               </div>
             </div>
           </form>
-        </div>
-        <div class="col-md-3 text-center code-section">
-          <section>
-            <h3>
-              <div>
-                <input type="file" accept="mp4" id="video-file" name="file" multiple>
-              </div>
-            </h3>
-          </section>
-        </div>
-        <div class="col-md-5 text-center preview-section">
-          <h5>
-            Preview
-          </h5>
-          
-          <section class="gifshot-image-preview-section"></section>
-          <div class="placeholder-div hidden">
-            <span class="placeholder-div-dimensions"></span>
-          </div>
-          <progress max="1" value="0" class="gifshot-progress-bar hidden"></progress>
-        </div>
-      </div>
     </div>
-  </section>
+  </div>
   <script src=".src/data/creator/creator.js" type="module"></script>
+  <script>
+    const select = document.getElementById('GIFSource');
+    const inputContainer = document.getElementById('input-container');
+    const input = document.getElementById('input');
+    console.log(inputContainer);
+
+    select.addEventListener('change', () => {
+      if (select.value === 'video' || select.value === 'images') {
+        inputContainer.style.display = 'block';
+      } else {
+        inputContainer.style.display = 'none';
+      }
+    });
   
-    </div>
+</script>
+
+  
+</div>
  
     `;
 };

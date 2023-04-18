@@ -132,6 +132,34 @@ nav {
   text-align: center;
 }
 
+.create-container {
+  display: grid;
+  max-width: 80%;
+  margin: auto;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 1fr, 5fr;
+}
+
+.create-buttons {
+  grid-row: 1; 
+  grid-column: 1/4;  
+  display: flex;
+  align-items: center;
+  margin-left: 3em;
+  margin-bottom: 3em;
+}
+
+.create-preview {
+  grid-row: 2/2; 
+  grid-column: 2/4; 
+  display: block;
+  margin:auto;
+}
+
+.create-options {
+
+}
+
 /* #gif-details-btn {
   display: inline-block;
   font-size: 15px;
