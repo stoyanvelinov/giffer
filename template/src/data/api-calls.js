@@ -8,6 +8,7 @@ import {
 import { addUploaded } from "./upload.js";
 import { q } from "../events/helpers.js";
 import { toSimpleView } from "../views/simple-view.js";
+import { loader } from "../events/helpers.js";
 
 let offset = 0;
 export const getTrendingGifs = async () => {
@@ -75,7 +76,7 @@ export const uploadGif = async (е) => {
     q("#msg").innerHTML = notLoadedMSG;
     return;
   }
-
+  q("#msg").innerHTML = loader();
   const formData = new FormData();
   formData.append("file", file);
   try {
@@ -86,7 +87,6 @@ export const uploadGif = async (е) => {
         body: formData,
       }
     );
-
     const result = await response.json();
     const gifId = result.data.id;
     addUploaded(gifId);

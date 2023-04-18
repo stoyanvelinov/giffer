@@ -19,5 +19,5 @@ export const FULL_HEART = "♥";
 export const EMPTY_HEART = "♡";
 export const LOADER = `<div class="loader">Is loading...</div>`
 
-export const successMSG = `<h3>Uploaded Successful</h3>`;
-export const notLoadedMSG = `<h3>Must provide gif</h3>`;
+export const successMSG = `<p>Upload Successful!</p>`;
+export const notLoadedMSG = `<p>Must provide gif</p>`;

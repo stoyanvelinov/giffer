@@ -22,3 +22,11 @@ export const renderFavoriteStatus = (gifId) => {
     ? `<span class="favorite active" gif-id="${gifId}">${FULL_HEART}</span>`
     : `<span class="favorite" gif-id="${gifId}">${EMPTY_HEART}</span>`;
 };
+
+export const loader = () => {
+  return `
+  <div id="loader-container">
+    <div id="loader">
+    </div>
+  </div>`;
+}

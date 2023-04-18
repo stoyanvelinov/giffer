@@ -1,4 +1,4 @@
-import { HOME, TRENDING } from "./common/constants.js";
+import { CONTAINER_SELECTOR, TRENDING } from "./common/constants.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { q } from "./events/helpers.js";
 import { loadPage, renderGifDetails } from "./events/navigation-events.js";
@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.classList.contains("nav-link")) {
       isTrendingPage = (e.target.getAttribute("data-page") === TRENDING);
       await loadPage(e.target.getAttribute("data-page"));
+    }
+
+    // gif details
+    if (e.target.classList.contains("gif-detail-btn")) {
+      renderGifDetails(e.target.getAttribute("gif-id"));
     }
 
     // toggle favorite event

@@ -23,6 +23,7 @@ import { LOADER } from "../common/constants.js";
 
 // public API
 export const loadPage = (page = "") => {
+
   switch (page) {
     case COLLECTION:
       setActiveNav(COLLECTION);
