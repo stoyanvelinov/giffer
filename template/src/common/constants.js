@@ -8,6 +8,8 @@ export const COLLECTION = "collection";
 
 export const UPLOAD = "upload";
 
+export const CREATE = "create";
+
 export const FAVORITES = "favorites";
 
 export const TRENDING = "trending";

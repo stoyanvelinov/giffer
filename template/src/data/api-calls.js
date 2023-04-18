@@ -90,7 +90,7 @@ Uploads a gif file to Giphy using the Giphy API key and FormData.
 */
 export const uploadGif = async (е) => {
   const file = document.getElementById("gif-file").files[0];
-
+  console.log(file);
   if (!file) {
     q("#msg").innerHTML = notLoadedMSG;
     return;
@@ -113,6 +113,53 @@ export const uploadGif = async (е) => {
     q("#gif-file").value = "";
 
     // console.log(result.data.id + ' upload successful');
+  } catch (err) {
+    console.error(err);
+    q("#msg").innerHTML = notLoadedMSG;
+  }
+};
+
+export const uploadNewGif = async (е) => {
+  const base64Data = document.getElementById("generated-gif").src;
+
+  const base64Parts = base64Data.split(',');
+  const base64EncodedData = base64Parts[1];
+
+  const binaryData = atob(base64EncodedData);
+
+  // Convert the binary data to a typed array
+  const byteArray = new Uint8Array(binaryData.length);
+  for (let i = 0; i < binaryData.length; i++) {
+    byteArray[i] = binaryData.charCodeAt(i);
+  }
+
+  // Create a new Blob object with the binary data
+  const blob = new Blob([byteArray], { type: 'image/gif' });
+  // Create a new File object from the Blob data
+  const file = new File([blob], 'new-gif.gif', { type: 'image/gif' });
+
+  if (!file) {
+    q("#msg").innerHTML = notLoadedMSG;
+    return;
+  }
+  console.log(file);
+
+  const formData = new FormData();
+  formData.append("file", file);
+  try {
+    const response = await fetch(
+      `https://upload.giphy.com/v1/gifs?api_key=${GIPHY_KEY}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const result = await response.json();
+    const gifId = result.data.id;
+    addUploaded(gifId);
+    q("#msg").innerHTML = successMSG;
+
   } catch (err) {
     console.error(err);
     q("#msg").innerHTML = notLoadedMSG;

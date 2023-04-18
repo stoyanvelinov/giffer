@@ -5,21 +5,22 @@ import {
   HOME,
   TRENDING,
   UPLOAD,
-  COLLECTION
+  CREATE,
+  COLLECTION,
 } from "../common/constants.js";
 import { loadSingleGif } from "../requests/request-service.js";
 import { toFavoritesView } from "../views/favorites-view.js";
 import { toCollectionView } from "../views/collection-view.js";
-// import { toHomeView } from "../views/collection-view.js";
 import { toGifDetailsView } from "../views/detail-view.js";
 import { loader, q, setActiveNav } from "./helpers.js";
-import { getFavorites } from "../data/favorites.js";
 import { getUploaded } from "../data/upload.js";
 import { toTrendingView } from "../views/trending-view.js";
 import { toUploadView } from "../views/upload-view.js";
-import { uploadGif } from "../data/api-calls.js";
 import { getTrendingGifs } from "../data/api-calls.js";
 
+import { toCreatorView } from "../views/creator-view.js";
+import { createGifModule } from "../data/creator/creator.js";
+import { showVideosButton } from "./creator-events.js";
 
 // public API
 export const loadPage = (page = "") => {
@@ -41,7 +42,10 @@ export const loadPage = (page = "") => {
       setActiveNav(UPLOAD);
       return renderUpload();
 
-    /* if the app supports error login, use default to log mapping errors */
+    case CREATE:
+      setActiveNav(CREATE);
+      return renderCreate();
+
     default:
       return null;
   }
@@ -60,8 +64,6 @@ const renderCollection = async () => {
 };
 
 const renderFavorites = async () => {
-  // const favorites = getFavorites();
-  // const gifs = favorites.map(async (id) => await loadSingleGif(id));
 
   q(CONTAINER_SELECTOR).innerHTML = await toFavoritesView();
 };
@@ -71,6 +73,11 @@ const renderTrending = async () => {
   await getTrendingGifs();
 };
 
+const renderCreate = async () => {
+  q(CONTAINER_SELECTOR).innerHTML = toCreatorView();
+  createGifModule(window, document);
+  showVideosButton();
+};
 
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
