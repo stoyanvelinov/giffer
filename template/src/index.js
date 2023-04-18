@@ -6,15 +6,18 @@ import { renderSearchItems } from "./events/search-events.js";
 import { uploadGif } from "./data/api-calls.js";
 import { getTrendingGifs } from "./data/api-calls.js";
 import { updateInput } from "./events/search-events.js"
-
+import { loader } from "./events/helpers.js";
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
+  
   let isTrendingPage = false;
   document.addEventListener("click", async (e) => {
 
     // nav events
     if (e.target.classList.contains("nav-link")) {
+      q(CONTAINER_SELECTOR).innerHTML = loader();
       isTrendingPage = (e.target.getAttribute("data-page") === TRENDING);
+
       await loadPage(e.target.getAttribute("data-page"));
     }
 
@@ -35,8 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   //search event
   q("#search--input").addEventListener("input", (e) => {
+    q(CONTAINER_SELECTOR).innerHTML = loader();
     updateInput(e.target.value);
   });
+
+  //reset searchBar text
+  q("#search--input").addEventListener("focusout", (e) => {
+    e.target.value = "";
+  });
+
 
   //Open and Close Navigation events
   q(".navbar--close-icon").addEventListener("click", () => {
@@ -70,6 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-
+  q(CONTAINER_SELECTOR).innerHTML = loader();
   loadPage(TRENDING);
 });

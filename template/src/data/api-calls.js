@@ -10,10 +10,17 @@ import { q } from "../events/helpers.js";
 import { toSimpleView } from "../views/simple-view.js";
 import { loader } from "../events/helpers.js";
 
-let offset = 0;
+export let offset = 0;
+/**
+Fetches trending GIFs from the Giphy API and appends them to the DOM.
+@async
+@function
+@returns {Promise<string | void>} A promise that resolves to a string with an error message, or void.
+*/
 export const getTrendingGifs = async () => {
   try {
     const loader = document.querySelector('.loader');
+    
     loader?.classList?.add('show');
     console.log(offset, '=offset ')
 
@@ -23,18 +30,26 @@ export const getTrendingGifs = async () => {
     const result = await gifs.json();
     offset += NUM_GIFS_TO_LOAD;
     loader?.classList?.remove('show');
-    const gifWraper = q('#gif-wrapper');
+
+    const gifWrapper = q('#gif-wrapper');
 
     const htmlGifs = result.data.map((gif) => toSimpleView(gif)).join('\n');
     const tempElement = document.createElement('div');
+  
     tempElement.innerHTML = htmlGifs;
-    gifWraper.append(tempElement);
+    gifWrapper.append(tempElement);
+
   } catch (err) {
     loader?.classList?.remove('show')
     return err.message
   }
 }
-
+/**
+Fetches searched gifs from Giphy API based on the given title
+@async
+@param {string} title - The title to search for
+@returns {Promise<Array>} An array of gifs data
+*/
 export const getSearchedGifs = async (title) => {
   try {
     const url = `${DOMAIN}search?api_key=${GIPHY_KEY}&q=${title}&offset=0&rating=g&lang=en`;
@@ -45,7 +60,12 @@ export const getSearchedGifs = async (title) => {
     return err.message;
   }
 };
-
+/**
+Fetches a single gif from Giphy API based on the given gifId
+@async
+@param {string} gifId - The ID of the gif to fetch
+@returns {Promise<Object>} A single gif data
+*/
 export const getGifById = async (gifId) => {
   const url = `${DOMAIN}${gifId}?api_key=${GIPHY_KEY}`;
   try {
@@ -56,7 +76,12 @@ export const getGifById = async (gifId) => {
     console.error(error);
   }
 };
-
+/**
+Get an array of gifs based on their ids
+@param {Array} favIds - An array of strings representing the ids of the favorite gifs
+@returns {Promise} A Promise object that resolves with an array of objects representing the favorite gifs
+@throws {Error} An error if the request fails
+*/
 export const getGifsByIds = async (favIds) => {
   const id = favIds.join("%2C");
   const url = `https://api.giphy.com/v1/gifs?api_key=${GIPHY_KEY}&ids=${id}`;
@@ -68,7 +93,12 @@ export const getGifsByIds = async (favIds) => {
     console.error(error);
   }
 };
-
+/**
+Uploads a gif file to Giphy using the Giphy API key and FormData.
+@async
+@param {Event} e - The event object representing the file upload.
+@returns {Promise} - A Promise that resolves with the GIF ID of the uploaded file or rejects with an error message.
+*/
 export const uploadGif = async (е) => {
   const file = document.getElementById("gif-file").files[0];
 
