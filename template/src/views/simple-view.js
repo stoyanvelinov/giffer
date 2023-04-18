@@ -1,5 +1,9 @@
 import { renderFavoriteStatus } from "../events/helpers.js";
-
+/**
+Returns the HTML code for displaying a given GIF object in a simple view.
+@param {object} gif - The GIF object to be displayed in the simple view.
+@returns {string} - The HTML code for displaying the GIF object in a simple view.
+*/
 export function toSimpleView(gif) {
   return `
   <div class="gif-and-above">
@@ -10,6 +14,3 @@ export function toSimpleView(gif) {
   </div>
     `;
 }
-// export function toSimpleView(gif) {
-//   return `<img src="${gif.images.original.url}" alt="${gif.title}" loading="lazy" class="gif gif-detail-btn" gif-id = "${gif.id}"/>`;
-// }

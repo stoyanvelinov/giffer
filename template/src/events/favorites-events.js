@@ -4,25 +4,16 @@ import {
   getFavorites,
   removeFavorite,
 } from "../data/favorites.js";
-import { q, renderFavoriteStatus } from "./helpers.js";
+import { q } from "./helpers.js";
 
-// export const toggleFavoriteStatus = (gifId) => {
-//   const favorites = getFavorites();
-
-//   if (favorites.includes(gifId)) {
-//     removeFavorite(gifId);
-//   } else {
-//     addFavorite(gifId);
-//   }
-
-//   q(`span[data-gif-id="${gifId}"]`).innerHTML = renderFavoriteStatus(movieId);
-// };
-
+/**
+ * Toggles the favorite status of a GIF with the given ID.
+ * @param {string} gifId - The ID of the GIF to toggle the favorite status of.
+ */
 export const toggleFavoriteStatus = (gifId) => {
   const favorites = getFavorites();
-  // const heartSpan = q(`span[gif-id="${gifId}"]`);
   const heartSpan = q(`.favorite[gif-id="${gifId}"]`);
-  // console.log(heartSpan, gifId);
+
   if (favorites.includes(gifId)) {
     removeFavorite(gifId);
     heartSpan.classList.remove("active");

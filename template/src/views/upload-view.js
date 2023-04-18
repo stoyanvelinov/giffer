@@ -1,3 +1,7 @@
+/**
+ * Returns an HTML string representing the upload view.
+ * @returns {string} The HTML string representing the upload view.
+ */
 export const toUploadView = () => {
   return `
   <div id="upload-container">

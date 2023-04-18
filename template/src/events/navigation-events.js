@@ -1,8 +1,6 @@
 import {
-  // CATEGORIES,
   CONTAINER_SELECTOR,
   FAVORITES,
-  HOME,
   TRENDING,
   UPLOAD,
   CREATE,
@@ -17,7 +15,6 @@ import { getUploaded } from "../data/upload.js";
 import { toTrendingView } from "../views/trending-view.js";
 import { toUploadView } from "../views/upload-view.js";
 import { getTrendingGifs } from "../data/api-calls.js";
-
 import { toCreatorView } from "../views/creator-view.js";
 import { createGifModule } from "../data/creator/creator.js";
 import { showVideosButton } from "./creator-events.js";
@@ -50,35 +47,58 @@ export const loadPage = (page = "") => {
       return null;
   }
 };
-
+/**
+ * Renders a single GIF details view into the container.
+ * @async
+ * @param {string|null} id - The ID of the GIF to load details for.
+ * @returns {Promise<void>} - A Promise that resolves once the GIF details view has been rendered.
+ */
 export const renderGifDetails = async (id = null) => {
   const gif = await loadSingleGif(id);
-  console.log(gif);
-
   q(CONTAINER_SELECTOR).innerHTML = toGifDetailsView(gif);
 };
 
+/**
+ * Renders the uploaded GIFs collection view.
+ * Gets the uploaded GIF IDs from the local storage and renders the collection view using the `toCollectionView` function.
+ * @async
+ * @returns {Promise<void>} A promise that resolves when the collection view is successfully rendered.
+ */
 const renderCollection = async () => {
   const ids = getUploaded();
   q(CONTAINER_SELECTOR).innerHTML = await toCollectionView(ids);
 };
 
+/**
+Renders the user's favorite gifs into the app's main container
+@async
+@returns {void}
+*/
 const renderFavorites = async () => {
-
   q(CONTAINER_SELECTOR).innerHTML = await toFavoritesView();
 };
-
+/**
+ * Renders the trending GIFs section
+ * @returns {Promise<void>} Promise that resolves once the trending GIFs are loaded and displayed
+ */
 const renderTrending = async () => {
   q(CONTAINER_SELECTOR).innerHTML = `${toTrendingView()} ${loader()}`;
   await getTrendingGifs();
 };
 
+/**
+Renders the create view for the GIF creator.
+@returns {Promise<void>}
+*/
 const renderCreate = async () => {
   q(CONTAINER_SELECTOR).innerHTML = toCreatorView();
   createGifModule(window, document);
   showVideosButton();
 };
 
+/**
+Renders the upload view.
+*/
 const renderUpload = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
   q("#gif-file").addEventListener("change", () => {

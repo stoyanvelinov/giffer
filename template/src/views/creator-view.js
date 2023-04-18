@@ -1,3 +1,7 @@
+/**
+Returns an HTML string representing the creator view, which allows users to create and upload GIFs.
+@return {string} The HTML string representing the creator view.
+*/
 export const toCreatorView = () => {
   return `
   <div class="create-container text-center">

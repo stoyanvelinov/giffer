@@ -15,7 +15,11 @@ export const setActiveNav = (page) => {
       : element.classList.remove("current")
   );
 };
-
+/**
+Renders the favorite status of a GIF based on whether it's included in the favorites list or not.
+@param {string} gifId - The ID of the GIF to check the favorite status for.
+@returns {string} - HTML string representing the favorite status of the GIF.
+*/
 export const renderFavoriteStatus = (gifId) => {
   const favorites = getFavorites();
 
@@ -23,7 +27,9 @@ export const renderFavoriteStatus = (gifId) => {
     ? `<span class="favorite active" gif-id="${gifId}">${FULL_HEART}</span>`
     : `<span class="favorite" gif-id="${gifId}">${EMPTY_HEART}</span>`;
 };
-
+/**
+ * @returns {string} The HTML code for the loader element.
+ */
 export const loader = () => {
   return `
   <div id="loader-container">

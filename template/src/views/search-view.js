@@ -1,6 +1,10 @@
 import { loadSearchedGifs } from "../requests/request-service.js";
 import { toSimpleView } from "./simple-view.js";
-
+/**
+ * Returns a string of HTML markup for displaying a search view for GIFs.
+ * @param {string} searchTerm - The user's search term.
+ * @returns {string} A string of HTML markup for displaying the search view.
+ */
 export const toSearchView = async (searchTerm) => {
   const searched = await loadSearchedGifs(searchTerm);
   return `
