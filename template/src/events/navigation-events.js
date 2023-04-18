@@ -65,8 +65,8 @@ export const renderGifDetails = async (id = null) => {
  * @returns {Promise<void>} A promise that resolves when the collection view is successfully rendered.
  */
 const renderCollection = async () => {
-  const ids = getUploaded();
-  q(CONTAINER_SELECTOR).innerHTML = await toCollectionView(ids);
+  q(CONTAINER_SELECTOR).innerHTML = await toCollectionView(getUploaded());
+  setTimeout(() => q(CONTAINER_SELECTOR).classList.remove("invisible"), 200);
 };
 
 /**
@@ -76,6 +76,7 @@ Renders the user's favorite gifs into the app's main container
 */
 const renderFavorites = async () => {
   q(CONTAINER_SELECTOR).innerHTML = await toFavoritesView();
+  setTimeout(() => q(CONTAINER_SELECTOR).classList.remove("invisible"), 200);
 };
 /**
  * Renders the trending GIFs section
@@ -84,6 +85,7 @@ const renderFavorites = async () => {
 const renderTrending = async () => {
   q(CONTAINER_SELECTOR).innerHTML = `${toTrendingView()} ${loader()}`;
   await getTrendingGifs();
+  setTimeout(() => q(CONTAINER_SELECTOR).classList.remove("invisible"), 200);
 };
 
 /**

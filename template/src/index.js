@@ -1,4 +1,4 @@
-import { CONTAINER_SELECTOR, COLLECTION,TRENDING } from "./common/constants.js";
+import { CONTAINER_SELECTOR, COLLECTION, TRENDING } from "./common/constants.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { q } from "./events/helpers.js";
 import { loadPage, renderGifDetails } from "./events/navigation-events.js";
@@ -9,7 +9,7 @@ import { updateInput } from "./events/search-events.js"
 import { loader } from "./events/helpers.js";
 document.addEventListener("DOMContentLoaded", () => {
   // add global listener
-  
+
   let isTrendingPage = false;
   document.addEventListener("click", async (e) => {
 
@@ -36,9 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
       uploadGif(e);
     }
 
-    if (e.target.classList.contains("upload-gif-file")) {
-      uploadGif(e);
-    }
   });
   //search event
   q("#search--input").addEventListener("input", (e) => {
