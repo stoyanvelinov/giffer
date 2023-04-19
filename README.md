@@ -10,6 +10,9 @@ Search for GIFs
 View a single GIF with a description
 Add GIFs to favorites
 Upload GIFs to Giphy account
+Create GIF: With this functionality, users can create their own GIFs using a variety of options. They can select a series of images or video clips, add text or captions, and choose from various filters and effects to customize their GIF. Once they have created their GIF, they can upload it to their Giphy account.
+This feature can be a great way for users to express their creativity and share their own unique content with others.
+
 
 ###Technologies Used
 HTML
